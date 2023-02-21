@@ -16,7 +16,7 @@ public class PlayerCspController : TickedNetworkBehaviour {
     Debug.Log($"Inertia: {_body.inertia}, Mass: {_body.mass}");
 
     if (IsOwner) {
-      //Reconcile(default, false);
+      Reconcile(default, false);
 
       // Where input is read and values for the forces to apply are calculated (no forces are applied here)
       HandleAxesInput();
