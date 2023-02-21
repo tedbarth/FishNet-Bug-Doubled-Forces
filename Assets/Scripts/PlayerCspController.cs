@@ -68,7 +68,7 @@ public class PlayerCspController : TickedNetworkBehaviour {
     bool asServer,
     Channel channel = Channel.Unreliable) {
 
-    // Deactivated to not resync, but to see the differences in resulting speed of client and server
+    // Deactivated to not resync, but to see the differences in resulting speed of client and server instead
     //transform.position = recData.Position;
     //_body.rotation = recData.Rotation;
     //_body.velocity = recData.LinearVelocity; // FIXME: To scalar value in flight direction
