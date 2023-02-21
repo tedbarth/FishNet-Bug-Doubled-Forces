@@ -11,3 +11,9 @@ This example uses CSP to predict the Player's objects position, rotation and vel
 - In one instance press 0 to start a server
 - In one instance press 9 to start a client
 - Rotate the player object using left/right arrow keys
+
+# What you will see
+- The player object on the client instance moves faster than on the server instance
+- Hosts' player objects do not suffer from this problem
+# What you want instead
+- All player models move the same speed
