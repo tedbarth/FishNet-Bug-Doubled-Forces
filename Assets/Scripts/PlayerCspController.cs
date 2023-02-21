@@ -13,8 +13,10 @@ public class PlayerCspController : TickedNetworkBehaviour {
   }
 
   protected override void OnNetworkTick() {
+    Debug.Log($"Inertia: {_body.inertia}, Mass: {_body.mass}");
+
     if (IsOwner) {
-      Reconcile(default, false);
+      //Reconcile(default, false);
 
       // Where input is read and values for the forces to apply are calculated (no forces are applied here)
       HandleAxesInput();
@@ -66,7 +68,7 @@ public class PlayerCspController : TickedNetworkBehaviour {
     bool asServer,
     Channel channel = Channel.Unreliable) {
 
-    // Deactivated to not desync, but to see the differences in resulting speed of client and server
+    // Deactivated to not resync, but to see the differences in resulting speed of client and server
     //transform.position = recData.Position;
     //_body.rotation = recData.Rotation;
     //_body.velocity = recData.LinearVelocity; // FIXME: To scalar value in flight direction
