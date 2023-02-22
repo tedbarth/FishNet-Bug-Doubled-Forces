@@ -328,17 +328,17 @@ namespace FishNet.Managing.Server
             if (NetworkManager == null || NetworkManager.TransportManager == null || NetworkManager.TransportManager.Transport == null)
                 return;
 
-            if (!subscribe)
-            {
-                NetworkManager.TransportManager.Transport.OnServerReceivedData -= Transport_OnServerReceivedData;
-                NetworkManager.TransportManager.Transport.OnServerConnectionState -= Transport_OnServerConnectionState;
-                NetworkManager.TransportManager.Transport.OnRemoteConnectionState -= Transport_OnRemoteConnectionState;
-            }
-            else
+            if (subscribe)
             {
                 NetworkManager.TransportManager.Transport.OnServerReceivedData += Transport_OnServerReceivedData;
                 NetworkManager.TransportManager.Transport.OnServerConnectionState += Transport_OnServerConnectionState;
                 NetworkManager.TransportManager.Transport.OnRemoteConnectionState += Transport_OnRemoteConnectionState;
+            }
+            else
+            {
+                NetworkManager.TransportManager.Transport.OnServerReceivedData -= Transport_OnServerReceivedData;
+                NetworkManager.TransportManager.Transport.OnServerConnectionState -= Transport_OnServerConnectionState;
+                NetworkManager.TransportManager.Transport.OnRemoteConnectionState -= Transport_OnRemoteConnectionState;
             }
         }
 
@@ -456,7 +456,8 @@ namespace FishNet.Managing.Server
                 writer.WritePacketId(PacketId.Authenticated);
                 writer.WriteNetworkConnection(conn);
                 /* If predicted spawning is enabled then also send
-                 * reserved objectIds. */;
+                 * reserved objectIds. */
+                ;
                 PredictionManager pm = NetworkManager.PredictionManager;
                 if (pm.GetAllowPredictedSpawning())
                 {
@@ -479,6 +480,7 @@ namespace FishNet.Managing.Server
         /// </summary>
         private void Transport_OnServerReceivedData(ServerReceivedDataArgs args)
         {
+            args.Data = NetworkManager.TransportManager.ProcessIntermediateIncoming(args.Data, false);
             ParseReceived(args);
         }
 
@@ -604,6 +606,10 @@ namespace FishNet.Managing.Server
                             return;
                         }
                         Objects.ReadPredictedDespawn(reader, conn);
+                    }
+                    else if (packetId == PacketId.NetworkLODUpdate)
+                    {
+                        ParseNetworkLODUpdate(reader, conn);
                     }
                     else if (packetId == PacketId.Broadcast)
                     {
