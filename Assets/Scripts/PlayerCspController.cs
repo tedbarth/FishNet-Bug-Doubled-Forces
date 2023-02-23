@@ -7,14 +7,29 @@ public class PlayerCspController : TickedNetworkBehaviour {
   private Rigidbody2D _body;
   private Acceleration _acceleration;
 
+  private static readonly Color[] ClientColors = {
+    Color.red,
+    Color.blue,
+    Color.green,
+    Color.cyan,
+    Color.yellow,
+    Color.magenta,
+    Color.white
+  };
+
   private void Awake() {
     _body = GetComponent<Rigidbody2D>();
     _acceleration = GetComponent<Acceleration>();
   }
 
-  protected override void OnNetworkTick() {
-    Debug.Log($"Inertia: {_body.inertia}, Mass: {_body.mass}");
+  public override void OnStartNetwork() {
+    base.OnStartNetwork();
 
+    // Assign player specific color
+    GetComponentInChildren<SpriteRenderer>().color = ClientColors[OwnerId % ClientColors.Length];
+  }
+
+  protected override void OnNetworkTick() {
     if (IsOwner) {
       Reconcile(default, false);
 
