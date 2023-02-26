@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Networking {
   public struct ReconcileMoveData : IReconcileData {
     public Vector2 Position;
-    public float Rotation;
+    public Quaternion Rotation;
     public Vector2 LinearVelocity; // signed
-    public float AngularVelocity; // signed
+    public Vector3 AngularVelocity; // signed
     public float LinearAcceleration; // signed
     public float AngularAcceleration; // signed
 

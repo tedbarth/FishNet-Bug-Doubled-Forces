@@ -4,7 +4,7 @@ using Networking;
 using UnityEngine;
 
 public class PlayerCspController : TickedNetworkBehaviour {
-  private Rigidbody2D _body;
+  private Rigidbody _body;
   private Acceleration _acceleration;
 
   private static readonly Color[] ClientColors = {
@@ -18,7 +18,7 @@ public class PlayerCspController : TickedNetworkBehaviour {
   };
 
   private void Awake() {
-    _body = GetComponent<Rigidbody2D>();
+    _body = GetComponent<Rigidbody>();
     _acceleration = GetComponent<Acceleration>();
   }
 
@@ -46,7 +46,7 @@ public class PlayerCspController : TickedNetworkBehaviour {
     if (IsServer) {
       ReconcileMoveData reconcileMoveData = new ReconcileMoveData {
         Position = transform.position,
-        Rotation = Utilities.limitToAmplitudeOf360(_body.rotation),
+        Rotation = _body.rotation,
         LinearVelocity = _body.velocity,
         AngularVelocity = _body.angularVelocity,
         LinearAcceleration = _acceleration.linearAcceleration,

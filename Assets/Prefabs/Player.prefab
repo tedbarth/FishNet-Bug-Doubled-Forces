@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2688099442571040679, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: linearAcceleration
-      value: 200
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2688099442571040679, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: maxAngularVelocity
@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2688099442571040679, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: angularAcceleration
-      value: 400
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6452363251737538471, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: _componentIndexCache
