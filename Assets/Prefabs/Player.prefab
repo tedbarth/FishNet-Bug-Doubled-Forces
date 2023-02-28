@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150447132266315513, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: _networkBehaviours.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 150447132266315513, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: <AssetPathHash>k__BackingField
@@ -206,11 +206,11 @@ PrefabInstance:
     - target: {fileID: 150447132266315513, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: _networkBehaviours.Array.data[1]
       value: 
-      objectReference: {fileID: 8722709071575007208}
+      objectReference: {fileID: 0}
     - target: {fileID: 150447132266315513, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: _networkBehaviours.Array.data[2]
       value: 
-      objectReference: {fileID: 1520486464}
+      objectReference: {fileID: 0}
     - target: {fileID: 150447132266315513, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
       propertyPath: _networkBehaviours.Array.data[3]
       value: 
@@ -309,7 +309,7 @@ PolygonCollider2D:
     - - {x: -0.120407104, y: 11.539382}
       - {x: 2.6062627, y: -5.858756}
       - {x: -2.59236, y: -5.6264043}
---- !u!114 &1520486464
+--- !u!114 &3873807806463478977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,17 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bec06ffd1a4c06faa73628393ab1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 6797404368399554230}
-  _networkObjectCache: {fileID: 6797404368399554230}
---- !u!114 &8722709071575007208 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2688099442571040679, guid: 0f4c49cb2cf2262a28c3889eb92b37d6, type: 3}
-  m_PrefabInstance: {fileID: 6648234015022213199}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6797404368399554235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eb42cf6d88be273aa6f8078969227bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _networkObjectCache: {fileID: 0}
+  linearAcceleration: 20
+  angularAcceleration: 5

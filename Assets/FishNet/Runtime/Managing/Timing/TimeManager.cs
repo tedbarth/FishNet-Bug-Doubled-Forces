@@ -663,6 +663,7 @@ namespace FishNet.Managing.Timing
                         OnPrePhysicsSimulation?.Invoke(tick);
                         Physics.Simulate(tick);
                         Physics2D.Simulate(tick);
+                        Debug.Log($"Simulate(${tickDelta}) // TimeManager");
                         OnPostPhysicsSimulation?.Invoke(tick);
                     }
 

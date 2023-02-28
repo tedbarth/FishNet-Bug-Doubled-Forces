@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerCspController : TickedNetworkBehaviour {
   private Rigidbody _body;
-  private Acceleration _acceleration;
+
+  public float linearAcceleration = 20f;
+  public float angularAcceleration = 5f;
 
   private static readonly Color[] ClientColors = {
     Color.red,
@@ -19,7 +21,6 @@ public class PlayerCspController : TickedNetworkBehaviour {
 
   private void Awake() {
     _body = GetComponent<Rigidbody>();
-    _acceleration = GetComponent<Acceleration>();
   }
 
   public override void OnStartNetwork() {
@@ -30,6 +31,7 @@ public class PlayerCspController : TickedNetworkBehaviour {
   }
 
   protected override void OnNetworkTick() {
+    Debug.Log("OnTick (Start)");
     if (IsOwner) {
       Reconcile(default, false);
 
@@ -40,20 +42,23 @@ public class PlayerCspController : TickedNetworkBehaviour {
     if (IsServer) {
       Move(default, true);
     }
+    Debug.Log("OnTick (End)");
   }
 
   protected override void OnNetworkPostTick() {
+    Debug.Log("OnPostTick (Start)");
     if (IsServer) {
       ReconcileMoveData reconcileMoveData = new ReconcileMoveData {
         Position = transform.position,
         Rotation = _body.rotation,
         LinearVelocity = _body.velocity,
         AngularVelocity = _body.angularVelocity,
-        LinearAcceleration = _acceleration.linearAcceleration,
-        AngularAcceleration = _acceleration.angularAcceleration
+        LinearAcceleration = linearAcceleration,
+        AngularAcceleration = angularAcceleration
       };
       Reconcile(reconcileMoveData, true);
     }
+    Debug.Log("OnPostTick (Start)");
   }
 
   private void HandleAxesInput() {
@@ -74,7 +79,18 @@ public class PlayerCspController : TickedNetworkBehaviour {
     bool asServer,
     Channel channel = Channel.Unreliable,
     bool replaying = false) {
-    _acceleration.SetInput(moveData.Vertical, moveData.Horizontal);
+
+    float mass = _body.mass;
+    float linearAccelerationForce = linearAcceleration * mass * moveData.Vertical;
+    float angularAccelerationForce = angularAcceleration * mass * -moveData.Horizontal;
+
+    if (linearAccelerationForce != 0) {
+      _body.AddForce(transform.up * linearAccelerationForce, ForceMode.Force);
+    }
+
+    if (angularAccelerationForce != 0) {
+      _body.AddTorque(Vector3.forward * angularAccelerationForce, ForceMode.Force);
+    }
   }
 
   [Reconcile]
@@ -84,11 +100,10 @@ public class PlayerCspController : TickedNetworkBehaviour {
     Channel channel = Channel.Unreliable) {
 
     // Deactivated to not resync, but to see the differences in resulting speed of client and server instead
-    //transform.position = recData.Position;
-    //_body.rotation = recData.Rotation;
-    //_body.velocity = recData.LinearVelocity; // FIXME: To scalar value in flight direction
-    //_body.angularVelocity = recData.AngularVelocity;
-    //_acceleration.linearAcceleration = recData.LinearAcceleration;
-    //_acceleration.angularAcceleration = recData.AngularAcceleration;
+    transform.position = recData.Position;
+    _body.rotation = recData.Rotation;
+    _body.velocity = recData.LinearVelocity;
+    _body.angularVelocity = recData.AngularVelocity;
+    Debug.Log($"Reconcile() // PlayerCspController");
   }
 }

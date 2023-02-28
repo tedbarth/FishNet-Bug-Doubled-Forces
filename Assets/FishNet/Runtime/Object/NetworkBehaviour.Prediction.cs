@@ -702,6 +702,7 @@ namespace FishNet.Object
                 {
                     ps.Simulate(tickDelta);
                     ps2d.Simulate(tickDelta);
+                    Debug.Log($"Simulate(${tickDelta}) // NetworkBehavior.Prediction");
                 }
 
                 PredictionManager.InvokeOnReplicateReplay_Internal(scene, replayTick, ps, ps2d, false);

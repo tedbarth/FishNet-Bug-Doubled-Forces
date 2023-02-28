@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 150447132266315512}
   - component: {fileID: 150447132266315513}
   - component: {fileID: 6452363251737538471}
-  - component: {fileID: 2688099442571040679}
   - component: {fileID: 1688268349225626581}
   m_Layer: 0
   m_Name: CSP Rigid Body
@@ -92,7 +91,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 6452363251737538471}
-  - {fileID: 2688099442571040679}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -132,27 +131,6 @@ MonoBehaviour:
   _resendType: 0
   _resendInterval: 30
   _networkTransform: {fileID: 0}
---- !u!114 &2688099442571040679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150447132266315508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eb42cf6d88be273aa6f8078969227bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 1
-  _addedNetworkObject: {fileID: 150447132266315513}
-  _networkObjectCache: {fileID: 150447132266315513}
-  linearAccelerationForce: 0
-  angularAccelerationForce: 0
-  maxLinearVelocity: 200
-  maxAngularVelocity: 100
-  linearAcceleration: 100
-  angularAcceleration: 0.005
 --- !u!54 &1688268349225626581
 Rigidbody:
   m_ObjectHideFlags: 0
