@@ -53,8 +53,6 @@ public class PlayerCspController : TickedNetworkBehaviour {
         Rotation = _body.rotation,
         LinearVelocity = _body.velocity,
         AngularVelocity = _body.angularVelocity,
-        LinearAcceleration = linearAcceleration,
-        AngularAcceleration = angularAcceleration
       };
       Reconcile(reconcileMoveData, true);
     }

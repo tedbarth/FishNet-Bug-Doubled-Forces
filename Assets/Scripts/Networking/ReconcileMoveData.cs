@@ -7,8 +7,6 @@ namespace Networking {
     public Quaternion Rotation;
     public Vector2 LinearVelocity; // signed
     public Vector3 AngularVelocity; // signed
-    public float LinearAcceleration; // signed
-    public float AngularAcceleration; // signed
 
     private uint _tick;
 
